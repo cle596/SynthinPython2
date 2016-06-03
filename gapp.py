@@ -24,7 +24,10 @@ class Application(tk.Frame):
             height=230
         )
         self.DRAW.pack(side="top")
-        self.DRAW.create_oval(30,30,60,60)
+        x=0
+        for x in range(0,4):
+            self.DRAW.create_oval(30+50*x,30,40+50*x,40)
+            x+=1
 
         self.PLAY = tk.Button(
             self,
