@@ -1,6 +1,7 @@
 import tkinter as tk
 import pprint as pp
-from audio import *
+from gaudio import *
+
 
 class Application(tk.Frame):
 
@@ -9,45 +10,49 @@ class Application(tk.Frame):
             self,
             master
         )
-        master.minsize(width=300, height=300)
-        self.pack()
+        self.pack(fill=tk.BOTH, expand=True)
         self.createWidgets()
 
     def createWidgets(self):
-        self.hi_there = tk.Button(
+        self.PLAY = tk.Button(
             self,
-            borderwidth=0,
+            borderwidth=1,
             bg="white",
-            highlightcolor="black",
-            padx=10
+            font=("Arial", 10)
         )
-        self.hi_there["text"] = "play"
-        self.hi_there["command"] = self.play
-        self.hi_there.pack(side="left")
+        self.PLAY["text"] = "play"
+        self.PLAY["command"] = self.play
+        self.PLAY.pack()
 
         self.QUIT = tk.Button(
             self,
             text="quit",
-            fg="blue",
             command=root.destroy,
-            borderwidth=0,
+            borderwidth=1,
             bg="white",
-            highlightcolor="black"
+            font=("Arial", 10)
         )
-        self.QUIT.pack(side="bottom")
+        self.QUIT.pack()
 
     def play(self):
-        print("playing music!")
-        stream = p.open(format = p.get_format_from_width(1),
-                        channels = 1,
-                        rate = BITRATE,
-                        output = True)
+        stream = p.open(format=p.get_format_from_width(1),
+                        channels=1,
+                        rate=BITRATE,
+                        output=True)
         stream.write(WAVEDATA)
         stream.stop_stream()
         stream.close()
         p.terminate()
 
 root = tk.Tk()
+w = 600  # width for the Tk root
+h = 300  # height for the Tk root
+ws = root.winfo_screenwidth()
+hs = root.winfo_screenheight()
+x = (ws / 2) - (w / 2)
+y = (hs / 2) - (h / 2)
+root.geometry('%dx%d+%d+%d' % (w, h, x, y))
 root.wm_title("Giorgio Synth Looper")
+root.configure(bg="white", width=1000)
 app = Application(master=root)
 app.mainloop()
