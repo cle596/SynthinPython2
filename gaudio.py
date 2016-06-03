@@ -3,22 +3,21 @@ import math
 
 PyAudio = pyaudio.PyAudio
 
-# See http://en.wikipedia.org/wiki/Bit_rate#Audio
-BITRATE = 16000  # number of frames per second/frameset.
+bitrate = 16000
 
-FREQUENCY = 880  # Hz, waves per second, 261.63=C4-note.
-LENGTH = 1  # seconds to play sound
+freq = 880
+LENGTH = 1  
 
-if FREQUENCY > BITRATE:
-    BITRATE = FREQUENCY + 100
+if freq > bitrate:
+    bitrate = freq + 100
 
-NUMBEROFFRAMES = int(BITRATE * LENGTH)
-RESTFRAMES = NUMBEROFFRAMES % BITRATE
+NUMBEROFFRAMES = int(bitrate * LENGTH)
+RESTFRAMES = NUMBEROFFRAMES % bitrate
 WAVEDATA = ''
 
 for x in range(0, NUMBEROFFRAMES):
     WAVEDATA = WAVEDATA + \
-        chr(int(math.sin(x / ((BITRATE / FREQUENCY) / math.pi)) * 127 + 128))
+        chr(int(math.sin(x / ((bitrate / freq) / math.pi)) * 127 + 128))
 
 for x in range(0, RESTFRAMES):
     WAVEDATA = WAVEDATA + chr(128)

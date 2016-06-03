@@ -9,14 +9,22 @@ class Application(tk.Frame):
             self,
             master
         )
-        self.bind("<Button-1>", self.callback)
+        self.bind("<Button-1>", self.clickCallback)
         self.pack(fill=tk.BOTH, expand=True)
         self.createWidgets(master)
 
-    def callback(self,event):
+    def clickCallback(self,event):
         print ("clicked at", event.x, event.y)
 
     def createWidgets(self,master):
+
+        self.DRAW = tk.Frame(
+            self,
+            width=600,
+            height=200
+        )
+        self.DRAW.pack(side="top")
+
         self.PLAY = tk.Button(
             self,
             borderwidth=1,
@@ -42,7 +50,7 @@ class Application(tk.Frame):
     def play(self):
         stream = p.open(format=p.get_format_from_width(1),
                         channels=1,
-                        rate=BITRATE,
+                        rate=bitrate,
                         output=True)
         stream.write(WAVEDATA)
         stream.stop_stream()
