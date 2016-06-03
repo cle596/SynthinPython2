@@ -1,7 +1,6 @@
 import tkinter as tk
 import pprint as pp
 
-
 class Application(tk.Frame):
 
     def __init__(self, master=None):
