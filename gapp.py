@@ -18,17 +18,18 @@ class Application(tk.Frame):
 
     def createWidgets(self,master):
 
-        self.DRAW = tk.Frame(
+        self.DRAW = tk.Canvas(
             self,
             width=600,
-            height=200
+            height=230
         )
         self.DRAW.pack(side="top")
+        self.DRAW.create_oval(30,30,60,60)
 
         self.PLAY = tk.Button(
             self,
             borderwidth=1,
-            relief="ridge",
+            relief="groove",
             bg="white",
             font=("Arial", 10)
         )
@@ -41,7 +42,7 @@ class Application(tk.Frame):
             text="quit",
             command=master.destroy,
             borderwidth=1,
-            relief="ridge",
+            relief="groove",
             bg="white",
             font=("Arial", 10)
         )
@@ -52,7 +53,7 @@ class Application(tk.Frame):
                         channels=1,
                         rate=bitrate,
                         output=True)
-        stream.write(WAVEDATA)
+        stream.write(wavedata)
         stream.stop_stream()
         stream.close()
         p.terminate()

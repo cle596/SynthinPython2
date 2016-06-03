@@ -4,6 +4,10 @@ from gaudio import *
 from gapp import *
 
 root = tk.Tk()
+root.resizable(width="false",height="false")
+
+img = tk.PhotoImage(file="icon.png")
+root.tk.call('wm','iconphoto',root._w,img)
 
 w = 600
 h = 300
