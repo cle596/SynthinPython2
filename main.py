@@ -2,7 +2,6 @@ import tkinter as tk
 import pprint as pp
 from gaudio import *
 
-
 class Application(tk.Frame):
 
     def __init__(self, master=None):
@@ -10,13 +9,18 @@ class Application(tk.Frame):
             self,
             master
         )
+        self.bind("<Button-1>", self.callback)
         self.pack(fill=tk.BOTH, expand=True)
         self.createWidgets()
+
+    def callback(self,event):
+        print ("clicked at", event.x, event.y)
 
     def createWidgets(self):
         self.PLAY = tk.Button(
             self,
             borderwidth=1,
+            relief="ridge",
             bg="white",
             font=("Arial", 10)
         )
@@ -29,6 +33,7 @@ class Application(tk.Frame):
             text="quit",
             command=root.destroy,
             borderwidth=1,
+            relief="ridge",
             bg="white",
             font=("Arial", 10)
         )
