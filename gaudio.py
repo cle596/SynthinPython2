@@ -17,9 +17,19 @@ wavedata = ''
 
 for x in range(0, numberofframes):
     wavedata = wavedata + \
-        chr(int(math.sin(x / ((bitrate / freq) / (2 * math.pi)))*127 + 128))
+        chr(int(math.sin(x / ((bitrate / freq) / (2 * math.pi))) * 127 + 128))
 
 for x in range(0, restframes):
-    wavedata = wavedata + chr(128)
+    wavedata = wavedata + chr(127)
 
 p = PyAudio()
+
+def play():
+    stream = p.open(format=p.get_format_from_width(1),
+                    channels=1,
+                    rate=bitrate,
+                    output=True)
+    stream.write(wavedata)
+    stream.stop_stream()
+    stream.close()
+    p.terminate()

@@ -34,7 +34,7 @@ class Application(tk.Frame):
             font=("Arial", 10)
         )
         self.PLAY["text"] = "play"
-        self.PLAY["command"] = self.play
+        self.PLAY["command"] = play
         self.PLAY.pack()
 
         self.QUIT = tk.Button(
@@ -47,13 +47,3 @@ class Application(tk.Frame):
             font=("Arial", 10)
         )
         self.QUIT.pack()
-
-    def play(self):
-        stream = p.open(format=p.get_format_from_width(1),
-                        channels=1,
-                        rate=bitrate,
-                        output=True)
-        stream.write(wavedata)
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
