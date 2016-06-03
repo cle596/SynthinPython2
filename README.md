@@ -4,7 +4,7 @@ A native app for creating 8bit music loops.
 
 ### How do I get set up? ###
 
-* Run python main.py in your terminal.
+* Run `python main.py` in your terminal.
 
 ### Contribution guidelines ###
 
